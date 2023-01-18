@@ -1,0 +1,608 @@
+
+R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.79 (8160) aarch64-apple-darwin20]
+
+[History restored from /Users/pr21/.Rapp.history]
+
+> read.csv("/Users/pr21/Desktop/DSclab/Pharmaceuticals.csv")
+   Symbol                               Name Market_Cap Beta PE_Ratio  ROE  ROA Asset_Turnover Leverage Rev_Growth
+1     ABT                Abbott Laboratories      68.44 0.32     24.7 26.4 11.8            0.7     0.42       7.54
+2     AGN                     Allergan, Inc.       7.58 0.41     82.5 12.9  5.5            0.9     0.60       9.16
+3     AHM                       Amersham plc       6.30 0.46     20.7 14.9  7.8            0.9     0.27       7.05
+4     AZN                    AstraZeneca PLC      67.63 0.52     21.5 27.4 15.4            0.9     0.00      15.00
+5     AVE                            Aventis      47.16 0.32     20.1 21.8  7.5            0.6     0.34      26.81
+6     BAY                           Bayer AG      16.90 1.11     27.9  3.9  1.4            0.6     0.00      -3.17
+7     BMY       Bristol-Myers Squibb Company      51.33 0.50     13.9 34.8 15.1            0.9     0.57       2.70
+8    CHTT                       Chattem, Inc       0.41 0.85     26.0 24.1  4.3            0.6     3.51       6.38
+9     ELN              Elan Corporation, plc       0.78 1.08      3.6 15.1  5.1            0.3     1.07      34.21
+10    LLY              Eli Lilly and Company      73.84 0.18     27.9 31.0 13.5            0.6     0.53       6.21
+11    GSK                GlaxoSmithKline plc     122.11 0.35     18.0 62.9 20.3            1.0     0.34      21.87
+12    IVX                   IVAX Corporation       2.60 0.65     19.9 21.4  6.8            0.6     1.45      13.99
+13    JNJ                  Johnson & Johnson     173.93 0.46     28.4 28.6 16.3            0.9     0.10       9.37
+14    MRX Medicis Pharmaceutical Corporation       1.20 0.75     28.6 11.2  5.4            0.3     0.93      30.37
+15    MRK                  Merck & Co., Inc.     132.56 0.46     18.9 40.6 15.0            1.1     0.28      17.35
+16    NVS                        Novartis AG      96.65 0.19     21.6 17.9 11.2            0.5     0.06      -2.69
+17    PFE                         Pfizer Inc     199.47 0.65     23.6 45.6 19.2            0.8     0.16      25.54
+18    PHA              Pharmacia Corporation      56.24 0.40     56.5 13.5  5.7            0.6     0.35      15.00
+19    SGP        Schering-Plough Corporation      34.10 0.51     18.9 22.6 13.3            0.8     0.00       8.56
+20    WPI       Watson Pharmaceuticals, Inc.       3.26 0.24     18.4 10.2  6.8            0.5     0.20      29.18
+21    WYE                              Wyeth      48.19 0.63     13.1 54.9 13.4            0.6     1.12       0.36
+   Net_Profit_Margin Median_Recommendation    Location Exchange
+1               16.1          Moderate Buy          US     NYSE
+2                5.5          Moderate Buy      CANADA     NYSE
+3               11.2            Strong Buy          UK     NYSE
+4               18.0         Moderate Sell          UK     NYSE
+5               12.9          Moderate Buy      FRANCE     NYSE
+6                2.6                  Hold     GERMANY     NYSE
+7               20.6         Moderate Sell          US     NYSE
+8                7.5          Moderate Buy          US   NASDAQ
+9               13.3         Moderate Sell     IRELAND     NYSE
+10              23.4                  Hold          US     NYSE
+11              21.1                  Hold          UK     NYSE
+12              11.0                  Hold          US     AMEX
+13              17.9          Moderate Buy          US     NYSE
+14              21.3          Moderate Buy          US     NYSE
+15              14.1                  Hold          US     NYSE
+16              22.4                  Hold SWITZERLAND     NYSE
+17              25.2          Moderate Buy          US     NYSE
+18               7.3                  Hold          US     NYSE
+19              17.6                  Hold          US     NYSE
+20              15.1         Moderate Sell          US     NYSE
+21              25.5                  Hold          US     NYSE
+> data <-read.csv("/Users/pr21/Desktop/DSclab/Pharmaceuticals.csv")
+> summary(data)
+    Symbol              Name             Market_Cap          Beta           PE_Ratio          ROE            ROA       
+ Length:21          Length:21          Min.   :  0.41   Min.   :0.1800   Min.   : 3.60   Min.   : 3.9   Min.   : 1.40  
+ Class :character   Class :character   1st Qu.:  6.30   1st Qu.:0.3500   1st Qu.:18.90   1st Qu.:14.9   1st Qu.: 5.70  
+ Mode  :character   Mode  :character   Median : 48.19   Median :0.4600   Median :21.50   Median :22.6   Median :11.20  
+                                       Mean   : 57.65   Mean   :0.5257   Mean   :25.46   Mean   :25.8   Mean   :10.51  
+                                       3rd Qu.: 73.84   3rd Qu.:0.6500   3rd Qu.:27.90   3rd Qu.:31.0   3rd Qu.:15.00  
+                                       Max.   :199.47   Max.   :1.1100   Max.   :82.50   Max.   :62.9   Max.   :20.30  
+ Asset_Turnover    Leverage        Rev_Growth    Net_Profit_Margin Median_Recommendation   Location        
+ Min.   :0.3    Min.   :0.0000   Min.   :-3.17   Min.   : 2.6      Length:21             Length:21         
+ 1st Qu.:0.6    1st Qu.:0.1600   1st Qu.: 6.38   1st Qu.:11.2      Class :character      Class :character  
+ Median :0.6    Median :0.3400   Median : 9.37   Median :16.1      Mode  :character      Mode  :character  
+ Mean   :0.7    Mean   :0.5857   Mean   :13.37   Mean   :15.7                                              
+ 3rd Qu.:0.9    3rd Qu.:0.6000   3rd Qu.:21.87   3rd Qu.:21.1                                              
+ Max.   :1.1    Max.   :3.5100   Max.   :34.21   Max.   :25.5                                              
+   Exchange        
+ Length:21         
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+> str(data
++ )
+'data.frame':	21 obs. of  14 variables:
+ $ Symbol               : chr  "ABT" "AGN" "AHM" "AZN" ...
+ $ Name                 : chr  "Abbott Laboratories" "Allergan, Inc." "Amersham plc" "AstraZeneca PLC" ...
+ $ Market_Cap           : num  68.44 7.58 6.3 67.63 47.16 ...
+ $ Beta                 : num  0.32 0.41 0.46 0.52 0.32 1.11 0.5 0.85 1.08 0.18 ...
+ $ PE_Ratio             : num  24.7 82.5 20.7 21.5 20.1 27.9 13.9 26 3.6 27.9 ...
+ $ ROE                  : num  26.4 12.9 14.9 27.4 21.8 3.9 34.8 24.1 15.1 31 ...
+ $ ROA                  : num  11.8 5.5 7.8 15.4 7.5 1.4 15.1 4.3 5.1 13.5 ...
+ $ Asset_Turnover       : num  0.7 0.9 0.9 0.9 0.6 0.6 0.9 0.6 0.3 0.6 ...
+ $ Leverage             : num  0.42 0.6 0.27 0 0.34 0 0.57 3.51 1.07 0.53 ...
+ $ Rev_Growth           : num  7.54 9.16 7.05 15 26.81 ...
+ $ Net_Profit_Margin    : num  16.1 5.5 11.2 18 12.9 2.6 20.6 7.5 13.3 23.4 ...
+ $ Median_Recommendation: chr  "Moderate Buy" "Moderate Buy" "Strong Buy" "Moderate Sell" ...
+ $ Location             : chr  "US" "CANADA" "UK" "UK" ...
+ $ Exchange             : chr  "NYSE" "NYSE" "NYSE" "NYSE" ...
+> head(data)
+  Symbol                Name Market_Cap Beta PE_Ratio  ROE  ROA Asset_Turnover
+1    ABT Abbott Laboratories      68.44 0.32     24.7 26.4 11.8            0.7
+2    AGN      Allergan, Inc.       7.58 0.41     82.5 12.9  5.5            0.9
+3    AHM        Amersham plc       6.30 0.46     20.7 14.9  7.8            0.9
+4    AZN     AstraZeneca PLC      67.63 0.52     21.5 27.4 15.4            0.9
+5    AVE             Aventis      47.16 0.32     20.1 21.8  7.5            0.6
+6    BAY            Bayer AG      16.90 1.11     27.9  3.9  1.4            0.6
+  Leverage Rev_Growth Net_Profit_Margin Median_Recommendation Location Exchange
+1     0.42       7.54              16.1          Moderate Buy       US     NYSE
+2     0.60       9.16               5.5          Moderate Buy   CANADA     NYSE
+3     0.27       7.05              11.2            Strong Buy       UK     NYSE
+4     0.00      15.00              18.0         Moderate Sell       UK     NYSE
+5     0.34      26.81              12.9          Moderate Buy   FRANCE     NYSE
+6     0.00      -3.17               2.6                  Hold  GERMANY     NYSE
+> pairs(data[3:11])
+> plot(data$Rev_Growth~ data$Net_Profit_Margin, data = data)
+> with(data,text(data$Rev_Growth ~ data$Net_Profit_Margin, labels=data$Symbol,pos=2, cex= 0.8))
+> z = data[, -c(1,2,12,13,14)]
+> z
+   Market_Cap Beta PE_Ratio  ROE  ROA Asset_Turnover Leverage Rev_Growth
+1       68.44 0.32     24.7 26.4 11.8            0.7     0.42       7.54
+2        7.58 0.41     82.5 12.9  5.5            0.9     0.60       9.16
+3        6.30 0.46     20.7 14.9  7.8            0.9     0.27       7.05
+4       67.63 0.52     21.5 27.4 15.4            0.9     0.00      15.00
+5       47.16 0.32     20.1 21.8  7.5            0.6     0.34      26.81
+6       16.90 1.11     27.9  3.9  1.4            0.6     0.00      -3.17
+7       51.33 0.50     13.9 34.8 15.1            0.9     0.57       2.70
+8        0.41 0.85     26.0 24.1  4.3            0.6     3.51       6.38
+9        0.78 1.08      3.6 15.1  5.1            0.3     1.07      34.21
+10      73.84 0.18     27.9 31.0 13.5            0.6     0.53       6.21
+11     122.11 0.35     18.0 62.9 20.3            1.0     0.34      21.87
+12       2.60 0.65     19.9 21.4  6.8            0.6     1.45      13.99
+13     173.93 0.46     28.4 28.6 16.3            0.9     0.10       9.37
+14       1.20 0.75     28.6 11.2  5.4            0.3     0.93      30.37
+15     132.56 0.46     18.9 40.6 15.0            1.1     0.28      17.35
+16      96.65 0.19     21.6 17.9 11.2            0.5     0.06      -2.69
+17     199.47 0.65     23.6 45.6 19.2            0.8     0.16      25.54
+18      56.24 0.40     56.5 13.5  5.7            0.6     0.35      15.00
+19      34.10 0.51     18.9 22.6 13.3            0.8     0.00       8.56
+20       3.26 0.24     18.4 10.2  6.8            0.5     0.20      29.18
+21      48.19 0.63     13.1 54.9 13.4            0.6     1.12       0.36
+   Net_Profit_Margin
+1               16.1
+2                5.5
+3               11.2
+4               18.0
+5               12.9
+6                2.6
+7               20.6
+8                7.5
+9               13.3
+10              23.4
+11              21.1
+12              11.0
+13              17.9
+14              21.3
+15              14.1
+16              22.4
+17              25.2
+18               7.3
+19              17.6
+20              15.1
+21              25.5
+> means = apply(z,2,mean)
+> sds = apply(z,2,sd)
+> nor = scale(z,center=means,scale=sds)
+> nor
+      Market_Cap        Beta    PE_Ratio         ROE        ROA Asset_Turnover
+ [1,]  0.1840960 -0.80125356 -0.04671323  0.04009035  0.2416121      0.0000000
+ [2,] -0.8544181 -0.45070513  3.49706911 -0.85483986 -0.9422871      0.9225312
+ [3,] -0.8762600 -0.25595600 -0.29195768 -0.72225761 -0.5100700      0.9225312
+ [4,]  0.1702742 -0.02225704 -0.24290879  0.10638147  0.9181259      0.9225312
+ [5,] -0.1790256 -0.80125356 -0.32874435 -0.26484883 -0.5664461     -0.4612656
+ [6,] -0.6953818  2.27578267  0.14948233 -1.45146000 -1.7127612     -0.4612656
+ [7,] -0.1078688 -0.10015669 -0.70887325  0.59693581  0.8617498      0.9225312
+ [8,] -0.9767669  1.26308721  0.03299122 -0.11237924 -1.1677918     -0.4612656
+ [9,] -0.9704532  2.15893320 -1.34037772 -0.70899938 -1.0174553     -1.8450624
+[10,]  0.2762415 -1.34655112  0.14948233  0.34502953  0.5610770     -0.4612656
+[11,]  1.0999201 -0.68440408 -0.45749769  2.45971647  1.8389364      1.3837968
+[12,] -0.9393967  0.48409069 -0.34100657 -0.29136529 -0.6979905     -0.4612656
+[13,]  1.9841758 -0.25595600  0.18013789  0.18593083  1.0872544      0.9225312
+[14,] -0.9632863  0.87358895  0.19240011 -0.96753478 -0.9610792     -1.8450624
+[15,]  1.2782387 -0.25595600 -0.40231769  0.98142435  0.8429577      1.8450624
+[16,]  0.6654710 -1.30760129 -0.23677768 -0.52338423  0.1288598     -0.9225312
+[17,]  2.4199899  0.48409069 -0.11415545  1.31287998  1.6322239      0.4612656
+[18,] -0.0240846 -0.48965495  1.90298017 -0.81506519 -0.9047030     -0.4612656
+[19,] -0.4018812 -0.06120687 -0.40231769 -0.21181593  0.5234929      0.4612656
+[20,] -0.9281345 -1.11285216 -0.43297324 -1.03382590 -0.6979905     -0.9225312
+[21,] -0.1614497  0.40619104 -0.75792214  1.92938746  0.5422849     -0.4612656
+         Leverage  Rev_Growth Net_Profit_Margin
+ [1,] -0.21209793 -0.52776752        0.06168225
+ [2,]  0.01828430 -0.38113909       -1.55366706
+ [3,] -0.40408312 -0.57211809       -0.68503583
+ [4,] -0.74965647  0.14744734        0.35122600
+ [5,] -0.31449003  1.21638667       -0.42597037
+ [6,] -0.74965647 -1.49714434       -1.99560225
+ [7,] -0.02011273 -0.96584257        0.74744375
+ [8,]  3.74279705 -0.63276071       -1.24888417
+ [9,]  0.61983791  1.88617085       -0.36501379
+[10,] -0.07130879 -0.64814764        1.17413980
+[11,] -0.31449003  0.76926048        0.82363947
+[12,]  1.10620040  0.05603085       -0.71551412
+[13,] -0.62166634 -0.36213170        0.33598685
+[14,]  0.44065173  1.53860717        0.85411776
+[15,] -0.39128411  0.36014907       -0.24310064
+[16,] -0.67286239 -1.45369888        1.02174835
+[17,] -0.54487226  1.10143723        1.44844440
+[18,] -0.30169102  0.14744734       -1.27936246
+[19,] -0.74965647 -0.43544591        0.29026942
+[20,] -0.49367621  1.43089863       -0.09070919
+[21,]  0.68383297 -1.17763919        1.49416183
+attr(,"scaled:center")
+       Market_Cap              Beta          PE_Ratio               ROE 
+       57.6514286         0.5257143        25.4619048        25.7952381 
+              ROA    Asset_Turnover          Leverage        Rev_Growth 
+       10.5142857         0.7000000         0.5857143        13.3709524 
+Net_Profit_Margin 
+       15.6952381 
+attr(,"scaled:scale")
+       Market_Cap              Beta          PE_Ratio               ROE 
+       58.6029595         0.2567406        16.3102568        15.0849752 
+              ROA    Asset_Turnover          Leverage        Rev_Growth 
+        5.3213988         0.2167948         0.7813103        11.0483351 
+Net_Profit_Margin 
+        6.5620482 
+> distance = dist(nor)
+> print(distance, digits = 3)
+      1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16
+2  4.42                                                                           
+3  2.02 3.95                                                                      
+4  1.67 4.91 2.36                                                                 
+5  2.11 4.64 2.49 2.63                                                            
+6  4.69 4.85 3.64 5.07 4.76                                                       
+7  1.81 5.42 2.60 1.57 3.40 5.27                                                  
+8  5.02 5.61 4.76 5.72 5.10 4.97 5.29                                             
+9  4.90 6.70 4.70 4.97 3.75 4.61 5.38 4.68                                        
+10 1.42 5.14 3.24 2.41 2.91 5.80 2.19 5.66 5.55                                   
+11 3.69 6.75 4.90 2.96 4.48 7.55 3.10 7.08 6.73 3.63                              
+12 2.62 4.47 2.32 3.28 2.39 3.66 3.28 2.95 3.12 3.54 5.28                         
+13 2.33 5.32 3.59 1.96 3.64 5.72 2.51 6.31 6.07 2.72 2.99 4.35                    
+14 3.92 5.48 4.12 4.27 2.93 4.85 4.73 4.79 2.39 4.19 6.19 2.83 5.31               
+15 2.68 5.44 3.36 1.86 3.47 5.92 2.43 6.10 5.92 3.38 2.22 4.16 1.81 5.53          
+16 1.92 5.47 3.33 3.06 3.33 5.33 2.87 6.06 5.73 1.58 4.78 3.90 3.08 4.48 4.11     
+17 3.89 6.91 5.27 3.11 4.50 7.16 3.67 7.18 6.12 3.78 2.45 5.36 2.45 5.52 2.83 4.54
+18 2.91 2.37 2.93 3.72 2.72 3.96 4.41 5.00 5.01 3.75 5.77 3.07 4.11 3.83 4.45 3.88
+19 1.31 4.73 1.70 1.08 2.46 4.43 1.48 5.35 4.67 2.21 3.78 2.76 2.60 3.91 2.71 2.54
+20 2.88 5.01 2.94 3.41 1.30 5.06 4.12 5.54 3.76 3.41 5.44 2.86 4.59 2.65 4.57 3.63
+21 3.04 6.45 4.19 3.32 4.25 5.95 2.27 5.13 5.31 2.75 3.67 3.72 3.86 4.71 3.94 3.53
+     17   18   19   20
+2                     
+3                     
+4                     
+5                     
+6                     
+7                     
+8                     
+9                     
+10                    
+11                    
+12                    
+13                    
+14                    
+15                    
+16                    
+17                    
+18 5.59               
+19 3.96 3.45          
+20 5.40 3.17 3.03     
+21 4.03 5.29 3.15 4.92
+> hc.c <- hclust(distance)
+> plot(hc.c)
+> plot(hc.c,labels=data$Company,main='Cluster Dendrogram')
+> plot(hc.c,hang=-1, labels = data$Median_Recommendation, main='Cluster Dendrogram based on Median Recommendation')
+> plot(hc.c,hang=-1, labels = data$Location, main='Cluster Dendrogram based on Location')
+> plot(hc.c,hang=-1, labels = data$Exchange, main='Cluster Dendrogram based on Stock Exchange')
+> # Hierarchical agglomerative clustering using "average" linkage 
+> #Cluster Dendogram with Average Linkage
+> hc.a<-hclust(distance,method="average")
+> plot(hc.a,hang=-1
++ )
+> 
+> # Hierarchical agglomerative clustering using "average" linkage 
+> #Cluster Dendogram with Average Linkage
+> hc.a<-hclust(distance,method="average")
+> plot(hc.a,hang=-1)
+> # Cluster membership
+> member = cutree(hc.c,3)
+> table(member)
+member
+ 1  2  3 
+11  3  7 
+> member.c <- cutree(hc.c,3)
+> member.a <- cutree(hc.a,3)
+> table(member.c, member.a)
+        member.a
+member.c  1  2  3
+       1 11  0  0
+       2  0  3  0
+       3  4  0  3
+> # Characterizing clusters 
+> aggregate(nor,list(member),mean)
+  Group.1 Market_Cap       Beta   PE_Ratio        ROE        ROA Asset_Turnover
+1       1  0.6733825 -0.3586419 -0.2763512  0.6565978  0.8344159   4.612656e-01
+2       2 -0.5246281  0.4451409  1.8498439 -1.0404550 -1.1865838   1.480297e-16
+3       3 -0.8333319  0.3728055 -0.3585240 -0.5858873 -0.8026890  -7.248459e-01
+    Leverage Rev_Growth Net_Profit_Margin
+1 -0.3331068 -0.2902163          0.682331
+2 -0.3443544 -0.5769454         -1.609544
+3  0.6710340  0.7033165         -0.382430
+> aggregate(data[, -c(1,2,12,13,14)],list(member),mean)
+  Group.1 Market_Cap      Beta PE_Ratio      ROE       ROA Asset_Turnover
+1       1  97.113636 0.4336364 20.95455 35.70000 14.954545      0.8000000
+2       2  26.906667 0.6400000 55.63333 10.10000  4.200000      0.7000000
+3       3   8.815714 0.6214286 19.61429 16.95714  6.242857      0.5428571
+   Leverage Rev_Growth Net_Profit_Margin
+1 0.3254545  10.164545         20.172727
+2 0.3166667   6.996667          5.133333
+3 1.1100000  21.141429         13.185714
+> # Silhouette Plot
+> library(cluster) 
+> plot(silhouette(cutree(hc.c,3), distance))
+> # Scree Plot
+> wss <- (nrow(nor)-1)*sum(apply(nor,2,var))
+> for (i in 2:20) wss[i] <- sum(kmeans(nor, centers=i)$withinss)
+> plot(1:20, wss, type="b", xlab="Number of Clusters", ylab="Within groups sum of squares")
+> # K-means clustering
+> set.seed(123)
+> kc<-kmeans(nor,3)
+> kc
+K-means clustering with 3 clusters of sizes 7, 9, 5
+
+Cluster means:
+  Market_Cap        Beta   PE_Ratio        ROE        ROA Asset_Turnover
+1  0.9547543 -0.06120687 -0.3576482  1.0818081  1.1033619      0.8566361
+2 -0.2375550 -0.73633718  0.4233386 -0.4489909 -0.2407172     -0.1025035
+3 -0.9090570  1.41109654 -0.2613021 -0.7063477 -1.1114156     -1.0147843
+    Leverage  Rev_Growth Net_Profit_Margin
+1 -0.2797499 -0.01818848         0.7082574
+2 -0.3557313 -0.13595383        -0.1652117
+3  1.0319661  0.27018076        -0.6941793
+
+Clustering vector:
+ [1] 2 2 2 1 2 3 1 3 3 2 1 3 1 3 1 2 1 2 2 2 1
+
+Within cluster sum of squares by cluster:
+[1] 25.26414 42.25037 31.94053
+ (between_SS / total_SS =  44.7 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      
+> plot(ROE~Net_Profit_Margin, data, col= kc$cluster)
+> with(data,text(data$Rev_Growth ~ data$Net_Profit_Margin, labels=data$Name,pos=2, cex=0.7))
+> 
+> plot(Rev_Growth~Net_Profit_Margin, data, col= kc$cluster)
+> with(data,text(data$Rev_Growth ~ data$Net_Profit_Margin, labels=data$Symbol,pos=2, cex=0.6))
+> 
+> 
+> plot(Rev_Growth~Net_Profit_Margin, data, col= kc$cluster)
+> with(data,text(data$Rev_Growth ~ data$Net_Profit_Margin, labels=data$Median_Recommendation,pos=2, cex=0.6))
+> 
+> plot(Rev_Growth~Net_Profit_Margin, data, col= kc$cluster)
+> with(data,text(data$Rev_Growth ~ data$Net_Profit_Margin, labels=data$Location,pos=2, cex=0.6))
+> 
+> plot(Rev_Growth~Net_Profit_Margin, data, col= kc$cluster)
+> with(data,text(data$Rev_Growth ~ data$Net_Profit_Margin, labels=data$Exchange,pos=2, cex=0.6))
+> 
+> library(kohonen)
+Error in library(kohonen) : there is no package called ‘kohonen’
+> 
+> 
+> str(data)
+'data.frame':	21 obs. of  14 variables:
+ $ Symbol               : chr  "ABT" "AGN" "AHM" "AZN" ...
+ $ Name                 : chr  "Abbott Laboratories" "Allergan, Inc." "Amersham plc" "AstraZeneca PLC" ...
+ $ Market_Cap           : num  68.44 7.58 6.3 67.63 47.16 ...
+ $ Beta                 : num  0.32 0.41 0.46 0.52 0.32 1.11 0.5 0.85 1.08 0.18 ...
+ $ PE_Ratio             : num  24.7 82.5 20.7 21.5 20.1 27.9 13.9 26 3.6 27.9 ...
+ $ ROE                  : num  26.4 12.9 14.9 27.4 21.8 3.9 34.8 24.1 15.1 31 ...
+ $ ROA                  : num  11.8 5.5 7.8 15.4 7.5 1.4 15.1 4.3 5.1 13.5 ...
+ $ Asset_Turnover       : num  0.7 0.9 0.9 0.9 0.6 0.6 0.9 0.6 0.3 0.6 ...
+ $ Leverage             : num  0.42 0.6 0.27 0 0.34 0 0.57 3.51 1.07 0.53 ...
+ $ Rev_Growth           : num  7.54 9.16 7.05 15 26.81 ...
+ $ Net_Profit_Margin    : num  16.1 5.5 11.2 18 12.9 2.6 20.6 7.5 13.3 23.4 ...
+ $ Median_Recommendation: chr  "Moderate Buy" "Moderate Buy" "Strong Buy" "Moderate Sell" ...
+ $ Location             : chr  "US" "CANADA" "UK" "UK" ...
+ $ Exchange             : chr  "NYSE" "NYSE" "NYSE" "NYSE" ...
+> X <- scale(data[, -c(1,2,12,13,14)])
+> summary(X)
+   Market_Cap           Beta            PE_Ratio            ROE               ROA          Asset_Turnover   
+ Min.   :-0.9768   Min.   :-1.3466   Min.   :-1.3404   Min.   :-1.4515   Min.   :-1.7128   Min.   :-1.8451  
+ 1st Qu.:-0.8763   1st Qu.:-0.6844   1st Qu.:-0.4023   1st Qu.:-0.7223   1st Qu.:-0.9047   1st Qu.:-0.4613  
+ Median :-0.1614   Median :-0.2560   Median :-0.2429   Median :-0.2118   Median : 0.1289   Median :-0.4613  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.2762   3rd Qu.: 0.4841   3rd Qu.: 0.1495   3rd Qu.: 0.3450   3rd Qu.: 0.8430   3rd Qu.: 0.9225  
+ Max.   : 2.4200   Max.   : 2.2758   Max.   : 3.4971   Max.   : 2.4597   Max.   : 1.8389   Max.   : 1.8451  
+    Leverage          Rev_Growth      Net_Profit_Margin 
+ Min.   :-0.74966   Min.   :-1.4971   Min.   :-1.99560  
+ 1st Qu.:-0.54487   1st Qu.:-0.6328   1st Qu.:-0.68504  
+ Median :-0.31449   Median :-0.3621   Median : 0.06168  
+ Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+ 3rd Qu.: 0.01828   3rd Qu.: 0.7693   3rd Qu.: 0.82364  
+ Max.   : 3.74280   Max.   : 1.8862   Max.   : 1.49416  
+> map$unit.classif
+Error: object 'map' not found
+> set.seed(222)
+> g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+Error in somgrid(xdim = 4, ydim = 4, topo = "rectangular") : 
+  could not find function "somgrid"
+> map <- som(X,
++            grid = g,
++            alpha = c(0.05, 0.01),
++            radius = 1)
+Error in som(X, grid = g, alpha = c(0.05, 0.01), radius = 1) : 
+  could not find function "som"
+> plot(map)
+Error in plot(map) : object 'map' not found
+> #plot(map, type = 'changes')
+> install.packages("kohonen")
+--- Please select a CRAN mirror for use in this session ---
+also installing the dependency ‘Rcpp’
+
+trying URL 'https://mirror.niser.ac.in/cran/bin/macosx/big-sur-arm64/contrib/4.2/Rcpp_1.0.9.tgz'
+Content type 'application/x-gzip' length 3303254 bytes (3.2 MB)
+==================================================
+downloaded 3.2 MB
+
+trying URL 'https://mirror.niser.ac.in/cran/bin/macosx/big-sur-arm64/contrib/4.2/kohonen_3.0.11.tgz'
+Content type 'application/x-gzip' length 2422209 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+
+The downloaded binary packages are in
+	/var/folders/l6/1hpr4qkn75x97pq2pbts9rvh0000gn/T//RtmpdGfyW9/downloaded_packages
+> str(data)
+'data.frame':	21 obs. of  14 variables:
+ $ Symbol               : chr  "ABT" "AGN" "AHM" "AZN" ...
+ $ Name                 : chr  "Abbott Laboratories" "Allergan, Inc." "Amersham plc" "AstraZeneca PLC" ...
+ $ Market_Cap           : num  68.44 7.58 6.3 67.63 47.16 ...
+ $ Beta                 : num  0.32 0.41 0.46 0.52 0.32 1.11 0.5 0.85 1.08 0.18 ...
+ $ PE_Ratio             : num  24.7 82.5 20.7 21.5 20.1 27.9 13.9 26 3.6 27.9 ...
+ $ ROE                  : num  26.4 12.9 14.9 27.4 21.8 3.9 34.8 24.1 15.1 31 ...
+ $ ROA                  : num  11.8 5.5 7.8 15.4 7.5 1.4 15.1 4.3 5.1 13.5 ...
+ $ Asset_Turnover       : num  0.7 0.9 0.9 0.9 0.6 0.6 0.9 0.6 0.3 0.6 ...
+ $ Leverage             : num  0.42 0.6 0.27 0 0.34 0 0.57 3.51 1.07 0.53 ...
+ $ Rev_Growth           : num  7.54 9.16 7.05 15 26.81 ...
+ $ Net_Profit_Margin    : num  16.1 5.5 11.2 18 12.9 2.6 20.6 7.5 13.3 23.4 ...
+ $ Median_Recommendation: chr  "Moderate Buy" "Moderate Buy" "Strong Buy" "Moderate Sell" ...
+ $ Location             : chr  "US" "CANADA" "UK" "UK" ...
+ $ Exchange             : chr  "NYSE" "NYSE" "NYSE" "NYSE" ...
+> X <- scale(data[, -c(1,2,12,13,14)])
+> summary(X)
+   Market_Cap           Beta            PE_Ratio            ROE               ROA          Asset_Turnover   
+ Min.   :-0.9768   Min.   :-1.3466   Min.   :-1.3404   Min.   :-1.4515   Min.   :-1.7128   Min.   :-1.8451  
+ 1st Qu.:-0.8763   1st Qu.:-0.6844   1st Qu.:-0.4023   1st Qu.:-0.7223   1st Qu.:-0.9047   1st Qu.:-0.4613  
+ Median :-0.1614   Median :-0.2560   Median :-0.2429   Median :-0.2118   Median : 0.1289   Median :-0.4613  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.2762   3rd Qu.: 0.4841   3rd Qu.: 0.1495   3rd Qu.: 0.3450   3rd Qu.: 0.8430   3rd Qu.: 0.9225  
+ Max.   : 2.4200   Max.   : 2.2758   Max.   : 3.4971   Max.   : 2.4597   Max.   : 1.8389   Max.   : 1.8451  
+    Leverage          Rev_Growth      Net_Profit_Margin 
+ Min.   :-0.74966   Min.   :-1.4971   Min.   :-1.99560  
+ 1st Qu.:-0.54487   1st Qu.:-0.6328   1st Qu.:-0.68504  
+ Median :-0.31449   Median :-0.3621   Median : 0.06168  
+ Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+ 3rd Qu.: 0.01828   3rd Qu.: 0.7693   3rd Qu.: 0.82364  
+ Max.   : 3.74280   Max.   : 1.8862   Max.   : 1.49416  
+> map$unit.classif
+Error: object 'map' not found
+> str(data)
+'data.frame':	21 obs. of  14 variables:
+ $ Symbol               : chr  "ABT" "AGN" "AHM" "AZN" ...
+ $ Name                 : chr  "Abbott Laboratories" "Allergan, Inc." "Amersham plc" "AstraZeneca PLC" ...
+ $ Market_Cap           : num  68.44 7.58 6.3 67.63 47.16 ...
+ $ Beta                 : num  0.32 0.41 0.46 0.52 0.32 1.11 0.5 0.85 1.08 0.18 ...
+ $ PE_Ratio             : num  24.7 82.5 20.7 21.5 20.1 27.9 13.9 26 3.6 27.9 ...
+ $ ROE                  : num  26.4 12.9 14.9 27.4 21.8 3.9 34.8 24.1 15.1 31 ...
+ $ ROA                  : num  11.8 5.5 7.8 15.4 7.5 1.4 15.1 4.3 5.1 13.5 ...
+ $ Asset_Turnover       : num  0.7 0.9 0.9 0.9 0.6 0.6 0.9 0.6 0.3 0.6 ...
+ $ Leverage             : num  0.42 0.6 0.27 0 0.34 0 0.57 3.51 1.07 0.53 ...
+ $ Rev_Growth           : num  7.54 9.16 7.05 15 26.81 ...
+ $ Net_Profit_Margin    : num  16.1 5.5 11.2 18 12.9 2.6 20.6 7.5 13.3 23.4 ...
+ $ Median_Recommendation: chr  "Moderate Buy" "Moderate Buy" "Strong Buy" "Moderate Sell" ...
+ $ Location             : chr  "US" "CANADA" "UK" "UK" ...
+ $ Exchange             : chr  "NYSE" "NYSE" "NYSE" "NYSE" ...
+> X <- scale(data[, -c(1,2,12,13,14)])
+> summary(X)
+   Market_Cap           Beta            PE_Ratio            ROE               ROA          Asset_Turnover   
+ Min.   :-0.9768   Min.   :-1.3466   Min.   :-1.3404   Min.   :-1.4515   Min.   :-1.7128   Min.   :-1.8451  
+ 1st Qu.:-0.8763   1st Qu.:-0.6844   1st Qu.:-0.4023   1st Qu.:-0.7223   1st Qu.:-0.9047   1st Qu.:-0.4613  
+ Median :-0.1614   Median :-0.2560   Median :-0.2429   Median :-0.2118   Median : 0.1289   Median :-0.4613  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.2762   3rd Qu.: 0.4841   3rd Qu.: 0.1495   3rd Qu.: 0.3450   3rd Qu.: 0.8430   3rd Qu.: 0.9225  
+ Max.   : 2.4200   Max.   : 2.2758   Max.   : 3.4971   Max.   : 2.4597   Max.   : 1.8389   Max.   : 1.8451  
+    Leverage          Rev_Growth      Net_Profit_Margin 
+ Min.   :-0.74966   Min.   :-1.4971   Min.   :-1.99560  
+ 1st Qu.:-0.54487   1st Qu.:-0.6328   1st Qu.:-0.68504  
+ Median :-0.31449   Median :-0.3621   Median : 0.06168  
+ Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+ 3rd Qu.: 0.01828   3rd Qu.: 0.7693   3rd Qu.: 0.82364  
+ Max.   : 3.74280   Max.   : 1.8862   Max.   : 1.49416  
+> set.seed(222)
+> g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+Error in somgrid(xdim = 4, ydim = 4, topo = "rectangular") : 
+  could not find function "somgrid"
+> map <- som(X,
++            grid = g,
++            alpha = c(0.05, 0.01),
++            radius = 1)
+Error in som(X, grid = g, alpha = c(0.05, 0.01), radius = 1) : 
+  could not find function "som"
+> plot(map)
+Error in plot(map) : object 'map' not found
+> #plot(map, type = 'changes')
+> library(kohonen)
+> 
+> str(data)
+'data.frame':	21 obs. of  14 variables:
+ $ Symbol               : chr  "ABT" "AGN" "AHM" "AZN" ...
+ $ Name                 : chr  "Abbott Laboratories" "Allergan, Inc." "Amersham plc" "AstraZeneca PLC" ...
+ $ Market_Cap           : num  68.44 7.58 6.3 67.63 47.16 ...
+ $ Beta                 : num  0.32 0.41 0.46 0.52 0.32 1.11 0.5 0.85 1.08 0.18 ...
+ $ PE_Ratio             : num  24.7 82.5 20.7 21.5 20.1 27.9 13.9 26 3.6 27.9 ...
+ $ ROE                  : num  26.4 12.9 14.9 27.4 21.8 3.9 34.8 24.1 15.1 31 ...
+ $ ROA                  : num  11.8 5.5 7.8 15.4 7.5 1.4 15.1 4.3 5.1 13.5 ...
+ $ Asset_Turnover       : num  0.7 0.9 0.9 0.9 0.6 0.6 0.9 0.6 0.3 0.6 ...
+ $ Leverage             : num  0.42 0.6 0.27 0 0.34 0 0.57 3.51 1.07 0.53 ...
+ $ Rev_Growth           : num  7.54 9.16 7.05 15 26.81 ...
+ $ Net_Profit_Margin    : num  16.1 5.5 11.2 18 12.9 2.6 20.6 7.5 13.3 23.4 ...
+ $ Median_Recommendation: chr  "Moderate Buy" "Moderate Buy" "Strong Buy" "Moderate Sell" ...
+ $ Location             : chr  "US" "CANADA" "UK" "UK" ...
+ $ Exchange             : chr  "NYSE" "NYSE" "NYSE" "NYSE" ...
+> X <- scale(data[, -c(1,2,12,13,14)])
+> summary(X)
+   Market_Cap           Beta            PE_Ratio            ROE               ROA          Asset_Turnover   
+ Min.   :-0.9768   Min.   :-1.3466   Min.   :-1.3404   Min.   :-1.4515   Min.   :-1.7128   Min.   :-1.8451  
+ 1st Qu.:-0.8763   1st Qu.:-0.6844   1st Qu.:-0.4023   1st Qu.:-0.7223   1st Qu.:-0.9047   1st Qu.:-0.4613  
+ Median :-0.1614   Median :-0.2560   Median :-0.2429   Median :-0.2118   Median : 0.1289   Median :-0.4613  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.2762   3rd Qu.: 0.4841   3rd Qu.: 0.1495   3rd Qu.: 0.3450   3rd Qu.: 0.8430   3rd Qu.: 0.9225  
+ Max.   : 2.4200   Max.   : 2.2758   Max.   : 3.4971   Max.   : 2.4597   Max.   : 1.8389   Max.   : 1.8451  
+    Leverage          Rev_Growth      Net_Profit_Margin 
+ Min.   :-0.74966   Min.   :-1.4971   Min.   :-1.99560  
+ 1st Qu.:-0.54487   1st Qu.:-0.6328   1st Qu.:-0.68504  
+ Median :-0.31449   Median :-0.3621   Median : 0.06168  
+ Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+ 3rd Qu.: 0.01828   3rd Qu.: 0.7693   3rd Qu.: 0.82364  
+ Max.   : 3.74280   Max.   : 1.8862   Max.   : 1.49416  
+> map$unit.classif
+Error in map$unit.classif : object of type 'closure' is not subsettable
+> 
+> set.seed(222)
+> g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+> map <- som(X,
++            grid = g,
++            alpha = c(0.05, 0.01),
++            radius = 1)
+> plot(map)
+Warning message:
+In par(opar) : argument 1 does not name a graphical parameter
+> 
+> plot(map, type = 'codes', palette.name = rainbow, main = "4 by 4 mapping of Pharmaceuticals data")
+Warning message:
+In par(opar) : argument 1 does not name a graphical parameter
+> set.seed(222)
+> g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+> map <- som(X,
++            grid = g,
++            alpha = c(0.05, 0.01),
++            radius = 1,ask)
+Error in RcppSupersom(data = data.matrix, codes = init.matrix, numVars = nvar,  : 
+  object 'ask' not found
+> plot(map)
+Warning message:
+In par(opar) : argument 1 does not name a graphical parameter
+> boxplot(map)
+Error in sort.int(x, na.last = na.last, decreasing = decreasing, ...) : 
+  'x' must be atomic
+> plot(X)
+> plot(X)
+> plot(map, type="count")
+> plot(map, type="dist.neighbours")
+> plot(map, type="dist.neighbours")
+> plot(map, type="count")
+> plot(map, type = 'mapping', main = "Number of Firms in each Node")
+> plot(map, type = 'codes', palette.name = rainbow, main = "4 by 4 mapping of Pharmaceuticals data")
+Warning message:
+In par(opar) : argument 1 does not name a graphical parameter
+> set.seed(222)
+> g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+> map <- som(X,
++            grid = g,
++            alpha = c(0.05, 0.01),
++            radius = 1)
+> plot(map)
+Warning message:
+In par(opar) : argument 1 does not name a graphical parameter
+> 

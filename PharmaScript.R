@@ -88,3 +88,80 @@ kc
   #plot(map, type = 'changes')
   
   install.packages("kohonen")
+
+str(data)
+  
+  X <- scale(data[, -c(1,2,12,13,14)])
+  summary(X)
+  set.seed(222)
+  g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+  
+  map <- som(X,
+             grid = g,
+             alpha = c(0.05, 0.01),
+             radius = 1)
+  plot(map)
+  
+  #plot(map, type = 'changes')
+  
+  install.packages("kohonen")
+  
+  str(data)
+  
+  X <- scale(data[, -c(1,2,12,13,14)])
+  summary(X)
+  
+  map$unit.classif
+  
+  str(data)
+  X <- scale(data[, -c(1,2,12,13,14)])
+  summary(X)
+  
+  set.seed(222)
+  g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+  
+  map <- som(X,
+             grid = g,
+             alpha = c(0.05, 0.01),
+             radius = 1)
+  
+  plot(map)
+  #plot(map, type = 'changes')
+  library(kohonen)
+  
+  str(data)
+  
+  X <- scale(data[, -c(1,2,12,13,14)])
+  summary(X)
+  
+  map$unit.classif 
+  set.seed(222)
+  g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+  map <- som(X,grid = g, alpha = c(0.05, 0.01), radius = 1)
+  plot(map)
+  
+  plot(map, type = 'codes', palette.name = rainbow, main = "4 by 4 mapping of Pharmaceuticals data")
+  
+  set.seed(222)
+  g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+  map <- som(X,grid = g, alpha = c(0.05, 0.01), radius = 1,ask)
+  
+  plot(map)
+  
+  boxplot(map)
+  
+  plot(X)
+  plot(X)
+  plot(map, type="count")
+  plot(map, type="dist.neighbours")
+  plot(map, type="dist.neighbours")
+  plot(map, type="count")
+  plot(map, type = 'mapping', main = "Number of Firms in each Node")
+  plot(map, type = 'codes', palette.name = rainbow, main = "4 by 4 mapping of Pharmaceuticals data")
+  
+  set.seed(222)
+  g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+  map <- som(X,grid = g, alpha = c(0.05, 0.01), radius = 1)
+  
+  plot(map)
+  

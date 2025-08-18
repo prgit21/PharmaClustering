@@ -2,7 +2,7 @@
 
 This repository contains an end‑to‑end workflow to segment pharmaceutical companies using unsupervised learning in **R**. The goal is to turn raw fundamentals into actionable **business segments** that help guide investment or product strategy.
 
-> **Summary of results:** Using hierarchical clustering and K‑Means on **21 companies × 9 financial metrics**, we identified **3 clear segments** with **7/9/5** firms. Cross‑method agreement was **~81% (17/21)**, and K‑Means explained **~45%** of between‑company variation (between\_SS / total\_SS = **44.7%**). A 4×4 Self‑Organizing Map (SOM) was used to visualize topology and neighborhood distances.
+> **Summary of results:** Using hierarchical clustering and K‑Means on **21 companies × 9 financial metrics**,  identified **3 clear segments** with **7/9/5** firms. Cross‑method agreement was **~81% (17/21)**, and K‑Means explained **~45%** of between‑company variation (between\_SS / total\_SS = **44.7%**). A 4×4 Self‑Organizing Map (SOM) was used to visualize topology and neighborhood distances.
 
 ---
 
